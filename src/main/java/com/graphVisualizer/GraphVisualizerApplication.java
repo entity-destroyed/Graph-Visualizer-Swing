@@ -1,39 +1,48 @@
 package com.graphVisualizer;
-import com.graphVisualizer.customNodes.DrawingPane;
-import com.graphVisualizer.customNodes.FunctionInputsPanel;
-import com.graphVisualizer.style.Style;
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
-import static com.graphVisualizer.style.Style.defaultBackground;
+import com.graphVisualizer.customComponents.DrawingPane;
+import com.graphVisualizer.customComponents.FunctionInputsPanel;
 
-public class GraphVisualizerApplication extends Application{
+import javax.swing.*;
+import java.awt.*;
+
+public class GraphVisualizerApplication {
 
     private int windowWidth = 600;
     private int windowHeight = 420;
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        HBox hBox = new HBox();
+    public void createAndShowGUI() {
+        // Create the main frame
+        JFrame frame = new JFrame("Graph Visualizer");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(windowWidth, windowHeight);
+
+        // Create a panel for layout
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS)); // Horizontal layout
+
+        // Create components
         DrawingPane drawingPane = new DrawingPane();
         FunctionInputsPanel functionPanel = new FunctionInputsPanel(drawingPane);
-        hBox.setPadding(new Insets(10));
-        hBox.setSpacing(10);
-        hBox.getChildren().add(functionPanel);
-        hBox.getChildren().add(drawingPane);
-        Scene mainScene = new Scene(hBox, windowWidth,windowHeight);
-        stage.setScene(mainScene);
-        stage.setTitle("Graph Visualizer");
-        stage.show();
+
+        // Add components to the main panel
+        mainPanel.add(functionPanel);
+        mainPanel.add(drawingPane);
+
+        // Set padding and spacing
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Padding
+
+        // Add the main panel to the frame
+        frame.getContentPane().add(mainPanel);
+
+        // Finalize and display the window
+        frame.setVisible(true);
     }
 
-    public static void main(String [] args){
-        launch();
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            GraphVisualizerApplication app = new GraphVisualizerApplication();
+            app.createAndShowGUI();
+        });
     }
 }

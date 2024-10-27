@@ -2,8 +2,9 @@ package com.graphVisualizer.math;
 
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
-import javafx.scene.shape.Line;
 
+import javax.sound.sampled.Line;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,24 +15,24 @@ public class Graph {
     private int begin = -100;
     private int end = 100;
     private double[] values;
-    private Line[] lines;
+    private Line2D[] lines;
     private boolean visible = true;
 
     public Graph(){
         values = new double[(int) Math.ceil((end-begin)/step)];
-        lines = new Line[values.length-1];
+        lines = new Line2D[values.length-1];
         for(int i = 0; i < values.length-1; i++){
-            lines[i] = new Line(0.0,0.0,0.0,0.0);
+            lines[i] = new Line2D.Double(0.0,0.0,0.0,0.0);
         }
     }
 
     public void calculateGraphCurve(int centerX, int centerY){
         for(int i = 1; i < values.length - 1; i++){
-            lines[i].setStartX(begin*scale + (i-1)*scale + centerX);
-            lines[i].setStartY(values[i-1]*(-1)*scale + centerY);
-            lines[i].setEndX(begin*scale + (i)*scale + centerX);
-            lines[i].setEndY(values[i]*(-1)*scale + centerY);
-            lines[i].setVisible(visible);
+            lines[i].setLine(
+                    begin*scale + (i-1)*scale + centerX,
+                    values[i-1]*(-1)*scale + centerY,
+                    begin*scale + (i)*scale + centerX,
+                    values[i]*(-1)*scale + centerY);
         }
     }
 
@@ -68,7 +69,7 @@ public class Graph {
         return values;
     }
 
-    public Line[] getLines(){
+    public Line2D[] getLines(){
         return lines;
     }
 
