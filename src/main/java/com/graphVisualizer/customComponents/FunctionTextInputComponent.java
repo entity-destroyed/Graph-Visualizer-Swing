@@ -33,7 +33,7 @@ public class FunctionTextInputComponent extends JPanel {
         visibilityButton.setPreferredSize(new Dimension(68,20));
         deleteButton = new JButton("Delete");
 
-        textField.setToolTipText("Enter function, e.g., =2x+3");
+        textField.setToolTipText("Enter function, e.g., 2x+3");
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -76,6 +76,10 @@ public class FunctionTextInputComponent extends JPanel {
         graph.setVisible(!isHidden);
         panel.updateInput(this);
         visibilityButton.setText(isHidden ? "Show" : "Hide");
+    }
+
+    public void setBorderColor(Color c){
+        textField.setBorder(BorderFactory.createLineBorder(c,2));
     }
 
     public Graph getGraph() {

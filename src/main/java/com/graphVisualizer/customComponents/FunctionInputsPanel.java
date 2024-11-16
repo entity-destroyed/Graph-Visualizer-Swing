@@ -39,7 +39,9 @@ public class FunctionInputsPanel extends JPanel {
         FunctionTextInputComponent newInput = new FunctionTextInputComponent(this);
         inputComponents.add(newInput);
         float hue = (float) (inputComponents.size() - 1) / 5;
-        newInput.getGraph().setColor(Color.getHSBColor(hue, 0.9f, 1f));
+        Color graphColor = Color.getHSBColor(hue, 0.9f, 1f);
+        newInput.getGraph().setColor(graphColor);
+        newInput.setBorderColor(graphColor);
         add(newInput, getComponentCount() - 1);  // Insert before the 'Add new' button
         drawingPane.addGraph(newInput.getGraph());
         if(inputComponents.size() == 5)

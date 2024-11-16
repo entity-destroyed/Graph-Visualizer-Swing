@@ -24,7 +24,7 @@ public class DrawingPane extends JPanel {
         setDoubleBuffered(true);
         centerX = width/2;
         centerY = height/2;
-        setBackground(new Color(1,1,1, 0.09f));
+        setBackground(new Color(1,1,1, 0.35f));
         initGridLines();
 
     }
@@ -64,10 +64,9 @@ public class DrawingPane extends JPanel {
         }
 
         // Draw graph lines
-
         for (Graph graph : graphList) {
-            g2.setColor(graph.getColor());
             if(graph.isVisible()) {
+                g2.setColor(graph.getColor());
                 for (Line2D line : graph.getLines()) {
                     g2.draw(line);
                 }
