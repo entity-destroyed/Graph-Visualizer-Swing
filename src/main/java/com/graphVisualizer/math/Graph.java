@@ -3,11 +3,7 @@ package com.graphVisualizer.math;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
-import javax.sound.sampled.Line;
 import java.awt.geom.Line2D;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Graph {
     private double step = 1;

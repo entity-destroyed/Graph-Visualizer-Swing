@@ -4,7 +4,6 @@ import com.graphVisualizer.customComponents.DrawingPane;
 import com.graphVisualizer.customComponents.FunctionInputsPanel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GraphVisualizerApplication {
 
