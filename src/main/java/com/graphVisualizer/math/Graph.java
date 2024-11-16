@@ -6,7 +6,7 @@ import com.fathzer.soft.javaluator.StaticVariableSet;
 import java.awt.geom.Line2D;
 
 public class Graph {
-    private double step = 1;
+    private double step = 0.1;
     private double scale = 20;
     private int begin = -100;
     private int end = 100;
@@ -25,9 +25,9 @@ public class Graph {
     public void calculateGraphCurve(int centerX, int centerY){
         for(int i = 1; i < values.length - 1; i++){
             lines[i].setLine(
-                    begin*scale + (i-1)*scale + centerX,
+                    begin*scale + (i-1)*scale*step + centerX,
                     values[i-1]*(-1)*scale + centerY,
-                    begin*scale + (i)*scale + centerX,
+                    begin*scale + (i)*scale*step + centerX,
                     values[i]*(-1)*scale + centerY);
         }
     }
