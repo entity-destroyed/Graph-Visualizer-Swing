@@ -26,8 +26,9 @@ public class FunctionTextInputComponent extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        textField = new JTextField(10);
-        textField.setSize(100,15);
+        textField = new JTextField();
+        textField.setPreferredSize(new Dimension(142,20));
+        textField.setMinimumSize(new Dimension(142,20));
         visibilityButton = new JToggleButton(" Hide ");
         visibilityButton.setPreferredSize(new Dimension(68,20));
         deleteButton = new JButton("Delete");
