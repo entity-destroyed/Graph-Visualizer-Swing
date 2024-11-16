@@ -40,7 +40,7 @@ public class Graph {
         DoubleEvaluator evaluator = new DoubleEvaluator();
         StaticVariableSet<Double> variables = new StaticVariableSet<>();
 
-        for(double x = begin, i = 0; i < values.length; x+= step/scale, i+=1){
+        for(double x = begin, i = 0; i < values.length; x+= step, i+=1){
             variables.set("x", x == 0 ? 0.01 : x);
             try {
                 values[(int) i] = evaluator.evaluate(expression, variables);
