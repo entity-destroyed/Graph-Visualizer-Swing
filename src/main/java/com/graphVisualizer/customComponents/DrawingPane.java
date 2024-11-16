@@ -18,8 +18,10 @@ public class DrawingPane extends JPanel {
     private List<Line2D> gridLines = new ArrayList<>();
 
     public DrawingPane(){
+        setOpaque(false);
         setPreferredSize(new Dimension(width, height));
         setMaximumSize(new Dimension(width, height));
+        setDoubleBuffered(true);
         centerX = width/2;
         centerY = height/2;
         setBackground(new Color(1,1,1, 0.09f));
