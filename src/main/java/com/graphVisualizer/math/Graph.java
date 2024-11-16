@@ -3,6 +3,7 @@ package com.graphVisualizer.math;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
+import java.awt.*;
 import java.awt.geom.Line2D;
 
 public class Graph {
@@ -13,6 +14,7 @@ public class Graph {
     private double[] values;
     private Line2D[] lines;
     private boolean visible = true;
+    private Color color;
 
     public Graph(){
         values = new double[(int) Math.ceil((end-begin)/step)];
@@ -69,6 +71,12 @@ public class Graph {
     }
     public double getScale(){
         return scale;
+    }
+    public Color getColor(){
+        return color;
+    }
+    public void setColor(Color c){
+        color = c;
     }
 
 }

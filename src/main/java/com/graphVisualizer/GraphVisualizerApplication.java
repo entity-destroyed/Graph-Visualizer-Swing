@@ -8,7 +8,7 @@ import javax.swing.*;
 public class GraphVisualizerApplication {
 
     private int windowWidth = 600;
-    private int windowHeight = 420;
+    private int windowHeight = 460;
 
     public void createAndShowGUI() {
         // Create the main frame

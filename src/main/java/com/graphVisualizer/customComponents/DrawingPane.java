@@ -64,8 +64,9 @@ public class DrawingPane extends JPanel {
         }
 
         // Draw graph lines
-        g2.setColor(Color.BLUE);  // Set graph color to distinguish from grid
+
         for (Graph graph : graphList) {
+            g2.setColor(graph.getColor());
             if(graph.isVisible()) {
                 for (Line2D line : graph.getLines()) {
                     g2.draw(line);

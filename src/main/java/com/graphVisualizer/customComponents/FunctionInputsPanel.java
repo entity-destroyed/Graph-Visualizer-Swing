@@ -21,7 +21,7 @@ public class FunctionInputsPanel extends JPanel {
     private void initializeGUI() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(Component.CENTER_ALIGNMENT);
-        setPreferredSize(new Dimension(160, 400)); // Fixed size
+        setPreferredSize(new Dimension(160, 400));
         setMaximumSize(new Dimension(160, 400));
         setMinimumSize(new Dimension(160, 400));
         setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
@@ -38,8 +38,12 @@ public class FunctionInputsPanel extends JPanel {
     private void addNewInput() {
         FunctionTextInputComponent newInput = new FunctionTextInputComponent(this);
         inputComponents.add(newInput);
+        float hue = (float) (inputComponents.size() - 1) / 5;
+        newInput.getGraph().setColor(Color.getHSBColor(hue, 0.9f, 1f));
         add(newInput, getComponentCount() - 1);  // Insert before the 'Add new' button
         drawingPane.addGraph(newInput.getGraph());
+        if(inputComponents.size() == 5)
+            newButton.setVisible(false);
         revalidate();
         repaint();
     }
@@ -47,9 +51,12 @@ public class FunctionInputsPanel extends JPanel {
     public void deleteInput(FunctionTextInputComponent input) {
         drawingPane.removeGraph(input.getGraph());
         inputComponents.remove(input);
+        if(inputComponents.size() == 4)
+            newButton.setVisible(true);
         remove(input);
         revalidate();
         repaint();
+
     }
 
     public void updateAll() {
