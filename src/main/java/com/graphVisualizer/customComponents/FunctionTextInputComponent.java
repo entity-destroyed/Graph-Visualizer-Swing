@@ -20,11 +20,16 @@ public class FunctionTextInputComponent extends JPanel {
 
     private void initializeUI() {
         setLayout(new GridBagLayout());
+        setMaximumSize(new Dimension(170,80));
+        setBackground(new Color(94, 255, 94));
+        setAlignmentY(Component.TOP_ALIGNMENT);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
         textField = new JTextField(10);
-        visibilityButton = new JToggleButton("Hide");
+        textField.setSize(100,15);
+        visibilityButton = new JToggleButton(" Hide ");
+        visibilityButton.setPreferredSize(new Dimension(68,20));
         deleteButton = new JButton("Delete");
 
         textField.setToolTipText("Enter function, e.g., =2x+3");

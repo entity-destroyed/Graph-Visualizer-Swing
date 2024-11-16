@@ -14,16 +14,22 @@ public class FunctionInputsPanel extends JPanel {
     public FunctionInputsPanel(DrawingPane drawingPane) {
         this.drawingPane = drawingPane;
         this.inputComponents = new ArrayList<>();
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        initializeUI();
+
+        initializeGUI();
     }
 
-    private void initializeUI() {
-        setMinimumSize(new Dimension(160, getHeight()));
-        setBackground(new Color(240, 240, 240));  // Replace `defaultBackground` with an example color
+    private void initializeGUI() {
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setAlignmentX(Component.CENTER_ALIGNMENT);
+        setPreferredSize(new Dimension(160, 400)); // Fixed size
+        setMaximumSize(new Dimension(160, 400));
+        setMinimumSize(new Dimension(160, 400));
+        setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
+        setBackground(new Color(178, 255, 146));
         setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 
         newButton = new JButton("Add new");
+        newButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newButton.addActionListener(event -> addNewInput());
 
         add(newButton);

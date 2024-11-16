@@ -58,7 +58,7 @@ public class DrawingPane extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Draw grid lines
-        g2.setColor(Color.BLACK);
+        g2.setColor(new Color(80, 80, 80, 255));
         for (Line2D line : gridLines) {
             g2.draw(line);
         }
