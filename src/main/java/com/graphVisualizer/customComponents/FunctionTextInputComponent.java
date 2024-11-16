@@ -54,7 +54,12 @@ public class FunctionTextInputComponent extends JPanel {
         textField.addActionListener(event -> textField.transferFocus());
         textField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                graph.setValuesFromExpression(textField.getText());
+                try{
+                    graph.setValuesFromExpression(textField.getText());
+                    textField.setBackground(Color.white);
+                }catch(IllegalArgumentException iaex){
+                    textField.setBackground(new Color(255, 57, 79));
+                }
                 panel.updateInput(FunctionTextInputComponent.this);
             }
         });
