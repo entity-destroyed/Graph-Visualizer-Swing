@@ -19,17 +19,25 @@ public class MainFrame extends JFrame {
 
         //create JPanel and set layout
         JPanel emptyScene = new JPanel();
-        emptyScene.setLayout(new BoxLayout(emptyScene, BoxLayout.X_AXIS));
+        //emptyScene.setLayout(new BoxLayout(emptyScene, BoxLayout.X_AXIS));
+
+        emptyScene.setLayout(new BorderLayout(10,10));
         basePanel.add(emptyScene,"EmptyScene");
 
 
         //create components
         DrawingPane drawingPane = new DrawingPane();
         FunctionInputsPanel functionInputsPanel = new FunctionInputsPanel(drawingPane);
+        JButton backButton = new JButton("Back to menu");
+        JButton saveButton = new JButton("Save graphs");
 
         //add components to empty scene
-        emptyScene.add(functionInputsPanel);
-        emptyScene.add(drawingPane);
+        emptyScene.add(functionInputsPanel, BorderLayout.WEST);
+        emptyScene.add(drawingPane, BorderLayout.CENTER);
+        JPanel optionsPanel = new JPanel();
+        optionsPanel.add(backButton);
+        optionsPanel.add(saveButton);
+        emptyScene.add(optionsPanel, BorderLayout.SOUTH);
         emptyScene.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Padding
 
         //create menu buttons
@@ -46,6 +54,10 @@ public class MainFrame extends JFrame {
         emptySceneButton.addActionListener(e -> cardLayout.show(basePanel,"EmptyScene"));
         loadSceneButton.addActionListener(e -> {
             //TODO load scene button action listener -> serialization
+        });
+        backButton.addActionListener(e -> cardLayout.show(basePanel, "Menu"));
+        saveButton.addActionListener(e -> {
+            //TODO serialization
         });
 
         cardLayout.show(basePanel, "Menu");
