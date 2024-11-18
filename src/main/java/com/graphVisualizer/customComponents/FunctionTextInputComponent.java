@@ -9,8 +9,8 @@ public class FunctionTextInputComponent extends JPanel {
 
     private Graph graph;
     private JTextField textField;
-    private JToggleButton visibilityButton;
-    private JButton deleteButton;
+    private CustomToggleButton visibilityButton;
+    private CustomButton deleteButton;
 
     public FunctionTextInputComponent(FunctionInputsPanel panel) {
         this.graph = new Graph();
@@ -29,9 +29,9 @@ public class FunctionTextInputComponent extends JPanel {
         textField = new JTextField();
         textField.setPreferredSize(new Dimension(142,20));
         textField.setMinimumSize(new Dimension(142,20));
-        visibilityButton = new JToggleButton(" Hide ");
+        visibilityButton = new CustomToggleButton(" Hide ");
         visibilityButton.setPreferredSize(new Dimension(68,20));
-        deleteButton = new JButton("Delete");
+        deleteButton = new CustomButton("Delete");
 
         textField.setToolTipText("Enter function, e.g., 2x+3");
 

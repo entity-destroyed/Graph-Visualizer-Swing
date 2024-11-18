@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FunctionInputsPanel extends JPanel {
 
-    private JButton newButton;
+    private CustomButton newButton;
     private final DrawingPane drawingPane;
     private final List<FunctionTextInputComponent> inputComponents;
 
@@ -28,7 +28,7 @@ public class FunctionInputsPanel extends JPanel {
         setBackground(new Color(178, 255, 146));
         setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 
-        newButton = new JButton("Add new");
+        newButton = new CustomButton("Add new");
         newButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newButton.addActionListener(event -> addNewInput());
 

@@ -30,8 +30,8 @@ public class MainFrame extends JFrame {
         //create components
         DrawingPane drawingPane = new DrawingPane();
         FunctionInputsPanel functionInputsPanel = new FunctionInputsPanel(drawingPane);
-        JButton backButton = new JButton("Back to menu");
-        JButton saveButton = new JButton("Save graphs");
+        CustomButton backButton = new CustomButton("Back to menu");
+        CustomButton saveButton = new CustomButton("Save graphs");
 
         //add components to empty scene
         emptyScene.add(functionInputsPanel, BorderLayout.WEST);
@@ -43,8 +43,8 @@ public class MainFrame extends JFrame {
         emptyScene.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Padding
 
         //create menu buttons
-        JButton emptySceneButton = new JButton("New empty pane");
-        JButton loadSceneButton = new JButton("Load previous");
+        CustomButton emptySceneButton = new CustomButton("New empty pane");
+        CustomButton loadSceneButton = new CustomButton("Load previous");
 
         //create menu panel
         JPanel menuPanel = new JPanel();
