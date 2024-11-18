@@ -35,11 +35,11 @@ public class Graph {
     }
 
     public void setValuesFromExpression(String expression) throws IllegalArgumentException{
-        DoubleEvaluator evaluator = new DoubleEvaluator();
+        CustomEvaluator evaluator = new CustomEvaluator();
         StaticVariableSet<Double> variables = new StaticVariableSet<>();
 
         for(double x = begin, i = 0; i < values.length; x+= step, i+=1){
-            variables.set("x", x == 0 ? 0.01 : x);
+            variables.set("x", x);
             values[(int) i] = evaluator.evaluate(expression, variables);
         }
     }
