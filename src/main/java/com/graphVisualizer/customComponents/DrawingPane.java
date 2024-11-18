@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DrawingPane extends JPanel {
@@ -64,14 +65,12 @@ public class DrawingPane extends JPanel {
         }
 
         // Draw graph lines
-        for (Graph graph : graphList) {
-            if(graph.isVisible()) {
-                g2.setColor(graph.getColor());
-                for (Line2D line : graph.getLines()) {
-                    g2.draw(line);
-                }
-            }
-        }
+        graphList.stream()
+                .filter(Graph::isVisible)
+                .forEach(graph -> {
+                    g2.setColor(graph.getColor());
+                    Arrays.stream(graph.getLines()).forEach(g2::draw);
+        });
     }
 
 }

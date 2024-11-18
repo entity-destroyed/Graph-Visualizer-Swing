@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class FunctionInputsPanel extends JPanel {
 
@@ -78,10 +77,7 @@ public class FunctionInputsPanel extends JPanel {
     }
 
     public List<String> getAllInputs(){
-        List<String> listOfInputs = new ArrayList<>();
-        for(FunctionTextInputComponent component : inputComponents)
-            listOfInputs.add(component.getExpression());
-        return listOfInputs;
+        return inputComponents.stream().map(FunctionTextInputComponent::getExpression).toList();
     }
 
     public void updateAll() {
