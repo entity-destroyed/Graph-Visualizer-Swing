@@ -1,5 +1,7 @@
 package com.graphVisualizer.customComponents;
 
+import com.graphVisualizer.utils.GraphSerializer;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -51,14 +53,20 @@ public class MainFrame extends JFrame {
         menuPanel.add(loadSceneButton);
 
         //add action listeners to menu items
-        emptySceneButton.addActionListener(e -> cardLayout.show(basePanel,"EmptyScene"));
+        emptySceneButton.addActionListener(e -> {
+            cardLayout.show(basePanel,"EmptyScene");
+        });
         loadSceneButton.addActionListener(e -> {
-            //TODO load scene button action listener -> serialization
+            functionInputsPanel.setMultipleInputs(GraphSerializer.readGraphsFromFile());
+            functionInputsPanel.updateAll();
+            cardLayout.show(basePanel,"EmptyScene");
         });
-        backButton.addActionListener(e -> cardLayout.show(basePanel, "Menu"));
-        saveButton.addActionListener(e -> {
-            //TODO serialization
+        backButton.addActionListener(e -> {
+            cardLayout.show(basePanel, "Menu");
+            functionInputsPanel.deleteAll();
         });
+        saveButton.addActionListener(e ->
+                GraphSerializer.writeGraphsToFile(functionInputsPanel.getAllInputs()));
 
         cardLayout.show(basePanel, "Menu");
         add(basePanel);

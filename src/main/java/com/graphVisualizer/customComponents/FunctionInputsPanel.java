@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class FunctionInputsPanel extends JPanel {
 
@@ -58,7 +59,29 @@ public class FunctionInputsPanel extends JPanel {
         remove(input);
         revalidate();
         repaint();
+    }
 
+    public void deleteAll(){
+        for(int i = 0; i < inputComponents.size(); ){
+            deleteInput(inputComponents.get(0));
+        }
+    }
+
+    public void setMultipleInputs(List<String> inputs){
+        for(String s : inputs){
+            addNewInput();
+            FunctionTextInputComponent newInput = inputComponents.get(inputComponents.size()-1);
+            newInput.getGraph().setValuesFromExpression(s);
+            newInput.setExpression(s);
+
+        }
+    }
+
+    public List<String> getAllInputs(){
+        List<String> listOfInputs = new ArrayList<>();
+        for(FunctionTextInputComponent component : inputComponents)
+            listOfInputs.add(component.getExpression());
+        return listOfInputs;
     }
 
     public void updateAll() {

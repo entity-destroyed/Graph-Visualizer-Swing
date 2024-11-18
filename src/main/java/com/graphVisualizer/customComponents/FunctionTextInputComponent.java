@@ -85,4 +85,11 @@ public class FunctionTextInputComponent extends JPanel {
     public Graph getGraph() {
         return graph;
     }
+
+    public String getExpression(){
+        return textField.getText();
+    }
+    public void setExpression(String expression){
+        textField.setText(expression);
+    }
 }
