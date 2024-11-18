@@ -52,6 +52,11 @@ public class DrawingPane extends JPanel {
         repaint();
     }
 
+    private boolean filterLineOutOfSight(Line2D line){
+        return (this.contains((int) Math.round(line.getP1().getX()),(int) Math.round(line.getP1().getY())) ||
+                this.contains((int) Math.round(line.getP2().getX()),(int) Math.round(line.getP2().getY())));
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -69,8 +74,8 @@ public class DrawingPane extends JPanel {
                 .filter(Graph::isVisible)
                 .forEach(graph -> {
                     g2.setColor(graph.getColor());
-                    Arrays.stream(graph.getLines()).forEach(g2::draw);
-        });
+                    Arrays.stream(graph.getLines()).filter(this::filterLineOutOfSight).forEach(g2::draw);
+                });
     }
 
 }

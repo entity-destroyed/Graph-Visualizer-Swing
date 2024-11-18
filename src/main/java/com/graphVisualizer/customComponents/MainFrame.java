@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    private int windowWidth = 600;
-    private int windowHeight = 460;
+    private final int windowWidth = 600;
+    private final int windowHeight = 520;
 
     public MainFrame(){
         setTitle("Function Visualizer");
