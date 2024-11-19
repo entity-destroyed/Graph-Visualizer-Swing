@@ -15,6 +15,7 @@ public class Graph {
     private Line2D[] lines;
     private boolean visible = true;
     private Color color;
+    private String expression;
 
     public Graph(){
         values = new double[(int) Math.ceil((end-begin)/step)];
@@ -35,6 +36,7 @@ public class Graph {
     }
 
     public void setValuesFromExpression(String expression) throws IllegalArgumentException{
+        this.expression = expression;
         CustomEvaluator evaluator = new CustomEvaluator();
         StaticVariableSet<Double> variables = new StaticVariableSet<>();
 
@@ -79,4 +81,11 @@ public class Graph {
         color = c;
     }
 
+    public String getExpression() {
+        return expression;
+    }
+
+    public void setExpression(String expression){
+        this.expression = expression;
+    }
 }

@@ -87,4 +87,10 @@ public class FunctionInputsPanel extends JPanel {
     public void updateInput(FunctionTextInputComponent input) {
         drawingPane.updateGraph(input.getGraph());
     }
+
+    //for tests
+    public boolean isAddNewButtonVisible() {
+        return newButton.isVisible();
+    }
+
 }

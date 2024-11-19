@@ -78,4 +78,7 @@ public class DrawingPane extends JPanel {
                 });
     }
 
+    public List<Graph> getGraphList() {
+        return graphList;
+    }
 }
