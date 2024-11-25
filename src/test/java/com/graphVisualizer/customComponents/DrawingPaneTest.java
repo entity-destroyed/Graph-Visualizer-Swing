@@ -91,7 +91,7 @@ class DrawingPaneTest {
     @Test
     void testPaintComponentGraphLines() {
         SwingUtilities.invokeLater(() -> {
-            // Setup the graph mock to return visible and lines
+            // Set up the graph mock to return visible and lines
             Line2D mockLine = mock(Line2D.class);
             when(mockGraph.isVisible()).thenReturn(true);
             when(mockGraph.getColor()).thenReturn(Color.RED);
@@ -114,7 +114,7 @@ class DrawingPaneTest {
     }
 
     @Test
-    void testFilterLineOutOfSightWithReflection() throws Exception {
+    void testFilterLineOutOfSightWithReflection() {
         SwingUtilities.invokeLater(() -> {
             try {
                 // Get the private method via reflection
