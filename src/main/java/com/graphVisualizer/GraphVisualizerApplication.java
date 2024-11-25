@@ -6,9 +6,6 @@ import javax.swing.*;
 
 public class GraphVisualizerApplication {
 
-    private int windowWidth = 600;
-    private int windowHeight = 460;
-
     public void startApplication() {
         MainFrame mainFrame = new MainFrame();
     }
