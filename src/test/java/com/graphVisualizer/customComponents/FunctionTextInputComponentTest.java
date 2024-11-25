@@ -86,7 +86,7 @@ class FunctionTextInputComponentTest {
     @Test
     @Disabled
     // TODO later: test focus lost
-    void testFocusLostInvalidInput() throws Exception{
+    void testFocusLostInvalidInput(){
         String invalidExpression = "invalid";
         JTextField textField = (JTextField) getChildComponentByName(component, JTextField.class);
         assertNotNull(textField, "Text field should be present.");
