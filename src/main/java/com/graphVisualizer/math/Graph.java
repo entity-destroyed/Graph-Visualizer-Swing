@@ -1,6 +1,5 @@
 package com.graphVisualizer.math;
 
-import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 import com.graphVisualizer.utils.ConfigLoader;
 
@@ -47,22 +46,8 @@ public class Graph {
         }
     }
 
-    public int getBegin(){
-        return begin;
-    }
-    public int getEnd(){
-        return end;
-    }
-    public double getStep(){
-        return step;
-    }
     public boolean isVisible(){
         return visible;
-    }
-
-
-    public double[] getValues() {
-        return values;
     }
 
     public Line2D[] getLines(){
@@ -72,9 +57,7 @@ public class Graph {
     public void setVisible(boolean v){
         visible = v;
     }
-    public double getScale(){
-        return scale;
-    }
+
     public Color getColor(){
         return color;
     }
