@@ -1,6 +1,7 @@
 package com.graphVisualizer.customComponents;
 
 import com.graphVisualizer.math.Graph;
+import com.graphVisualizer.utils.ConfigLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +26,7 @@ public class DrawingPane extends JPanel {
         setDoubleBuffered(true);
         centerX = width/2;
         centerY = height/2;
-        setBackground(new Color(1,1,1, 0.35f));
+        setBackground(ConfigLoader.getColor("color.dp.background"));
         initGridLines();
 
     }
@@ -64,7 +65,7 @@ public class DrawingPane extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Draw grid lines
-        g2.setColor(new Color(80, 80, 80, 255));
+        g2.setColor(ConfigLoader.getColor("color.grid"));
         for (Line2D line : gridLines) {
             g2.draw(line);
         }

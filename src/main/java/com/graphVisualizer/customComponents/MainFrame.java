@@ -1,19 +1,19 @@
 package com.graphVisualizer.customComponents;
 
+import com.graphVisualizer.utils.ConfigLoader;
 import com.graphVisualizer.utils.GraphSerializer;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-
-    private final int windowWidth = 600;
-    private final int windowHeight = 520;
+    private final String MENU = "Menu";
+    private final String EMPTY_SCENE = "EmptyScene";
 
     public MainFrame(){
         setTitle("Function Visualizer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(windowWidth,windowHeight);
+        setSize(ConfigLoader.getDim("dim.window"));
 
         //create card layout
         CardLayout cardLayout = new CardLayout();
@@ -21,10 +21,9 @@ public class MainFrame extends JFrame {
 
         //create JPanel and set layout
         JPanel emptyScene = new JPanel();
-        //emptyScene.setLayout(new BoxLayout(emptyScene, BoxLayout.X_AXIS));
 
         emptyScene.setLayout(new BorderLayout(10,10));
-        basePanel.add(emptyScene,"EmptyScene");
+        basePanel.add(emptyScene,EMPTY_SCENE);
 
 
         //create components
@@ -48,27 +47,25 @@ public class MainFrame extends JFrame {
 
         //create menu panel
         JPanel menuPanel = new JPanel();
-        basePanel.add(menuPanel, "Menu");
+        basePanel.add(menuPanel, MENU);
         menuPanel.add(emptySceneButton);
         menuPanel.add(loadSceneButton);
 
         //add action listeners to menu items
-        emptySceneButton.addActionListener(e -> {
-            cardLayout.show(basePanel,"EmptyScene");
-        });
+        emptySceneButton.addActionListener(e -> cardLayout.show(basePanel,EMPTY_SCENE));
         loadSceneButton.addActionListener(e -> {
             functionInputsPanel.setMultipleInputs(GraphSerializer.readGraphsFromFile());
             functionInputsPanel.updateAll();
-            cardLayout.show(basePanel,"EmptyScene");
+            cardLayout.show(basePanel,EMPTY_SCENE);
         });
         backButton.addActionListener(e -> {
-            cardLayout.show(basePanel, "Menu");
+            cardLayout.show(basePanel, MENU);
             functionInputsPanel.deleteAll();
         });
         saveButton.addActionListener(e ->
                 GraphSerializer.writeGraphsToFile(functionInputsPanel.getAllInputs()));
 
-        cardLayout.show(basePanel, "Menu");
+        cardLayout.show(basePanel, MENU);
         add(basePanel);
         setVisible(true);
     }

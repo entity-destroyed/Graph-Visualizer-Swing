@@ -1,15 +1,17 @@
 package com.graphVisualizer.customComponents;
+import com.graphVisualizer.utils.ConfigLoader;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class CustomButton extends JButton {
-    protected Color baseColor = new Color(45, 137, 239); // Default button color
-    protected Color hoverColor = new Color(33, 102, 178); // Hover color
-    protected Color pressedColor = new Color(25, 82, 148); // Pressed color
-    protected Color textColor = Color.WHITE; // Text color
-    protected int cornerRadius = 10; // Radius for rounded corners
+    protected Color baseColor = ConfigLoader.getColor("color.base"); // Default button color
+    protected Color hoverColor = ConfigLoader.getColor("color.hover"); // Hover color
+    protected Color pressedColor = ConfigLoader.getColor("color.pressed"); // Pressed color
+    protected Color textColor = ConfigLoader.getColor("color.text"); // Text color
+    protected final int cornerRadius = 10; // Radius for rounded corners
 
     public CustomButton(String text) {
         super(text);
@@ -62,7 +64,7 @@ public class CustomButton extends JButton {
 
     @Override
     protected void paintComponent(Graphics g) {
-        // Enable anti-aliasing for smooth graphics
+        // Enable antialiasing for smooth graphics
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -78,17 +80,13 @@ public class CustomButton extends JButton {
     }
 
     @Override
-    protected void paintBorder(Graphics g) {
-        // Optionally, you can draw a border here if desired
-        // For a clean design, we'll omit the border
-    }
-
-    @Override
     public Dimension getPreferredSize() {
         // Calculate preferred size based on text and padding
         FontMetrics fm = getFontMetrics(getFont());
-        int width = fm.stringWidth(getText()) + 40; // Add horizontal padding
-        int height = fm.getHeight() + 5;          // Add vertical padding
+        int hPadding = 40;
+        int width = fm.stringWidth(getText()) + hPadding; // Add horizontal padding
+        int vPadding = 5;
+        int height = fm.getHeight() + vPadding;          // Add vertical padding
         return new Dimension(width, height);
     }
 
@@ -116,10 +114,6 @@ public class CustomButton extends JButton {
 
     public void setPressedColor(Color pressedColor) {
         this.pressedColor = pressedColor;
-    }
-
-    public void setCornerRadius(int cornerRadius) {
-        this.cornerRadius = cornerRadius;
     }
 
     public Color getTextColor() {

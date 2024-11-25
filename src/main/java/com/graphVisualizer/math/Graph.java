@@ -2,17 +2,18 @@ package com.graphVisualizer.math;
 
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
+import com.graphVisualizer.utils.ConfigLoader;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
 
 public class Graph {
-    private double step = 0.1;
-    private double scale = 20;
-    private int begin = -100;
-    private int end = 100;
-    private double[] values;
-    private Line2D[] lines;
+    private final double step = ConfigLoader.getDouble("g.step");
+    private final double scale = ConfigLoader.getDouble("g.scale");
+    private final int begin = ConfigLoader.getInt("g.begin");
+    private final int end = ConfigLoader.getInt("g.end");
+    private final double[] values;
+    private final Line2D[] lines;
     private boolean visible = true;
     private Color color;
     private String expression;

@@ -1,5 +1,7 @@
 package com.graphVisualizer.customComponents;
 
+import com.graphVisualizer.utils.ConfigLoader;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -7,8 +9,8 @@ import java.awt.event.MouseEvent;
 public class CustomToggleButton extends CustomButton {
 
     private boolean selected = false; // Initial state: not selected
-    private final Color selectedColor = new Color(33, 102, 178); // Color when selected
-    private Color unselectedColor = new Color(45, 137, 239); // Default color for unselected state
+    private final Color selectedColor = ConfigLoader.getColor("color.hover"); // Color when selected
+    private Color unselectedColor = ConfigLoader.getColor("color.base"); // Default color for unselected state
 
     public CustomToggleButton(String text) {
         super(text); // Call the constructor of the parent class
@@ -32,7 +34,7 @@ public class CustomToggleButton extends CustomButton {
     // Override the paintComponent method to handle different states visually
     @Override
     protected void paintComponent(Graphics g) {
-        // Enable anti-aliasing for smoother graphics
+        // Enable antialiasing for smoother graphics
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -66,15 +68,6 @@ public class CustomToggleButton extends CustomButton {
         // Force revalidation to recalculate the preferred size and trigger a layout update
         revalidate();
         repaint();
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        // Get the preferred size from the parent class (CustomButton)
-        Dimension preferredSize = super.getPreferredSize();
-
-        // Make sure to adjust the size if needed, for example, to add padding
-        return preferredSize;
     }
 
     @Override

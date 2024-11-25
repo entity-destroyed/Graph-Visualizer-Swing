@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GraphSerializer {
-    private static final String FILE_PATH = "data/data.txt";
+    private static final String FILE_PATH = ConfigLoader.get("data.filePath");
     public static void writeGraphsToFile(List<String> lines){
         File outputFile = new File(FILE_PATH);
 

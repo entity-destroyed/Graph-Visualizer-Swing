@@ -1,13 +1,14 @@
 package com.graphVisualizer.customComponents;
 
 import com.graphVisualizer.math.Graph;
+import com.graphVisualizer.utils.ConfigLoader;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class FunctionTextInputComponent extends JPanel {
 
-    private Graph graph;
+    private final Graph graph;
     private JTextField textField;
     private CustomToggleButton visibilityButton;
     private CustomButton deleteButton;
@@ -20,17 +21,18 @@ public class FunctionTextInputComponent extends JPanel {
 
     private void initializeUI() {
         setLayout(new GridBagLayout());
-        setMaximumSize(new Dimension(170,80));
-        setBackground(new Color(94, 255, 94));
+        setMaximumSize(ConfigLoader.getDim("dim.ftic"));
+        setBackground(ConfigLoader.getColor("color.ftic.background"));
         setAlignmentY(Component.TOP_ALIGNMENT);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
         textField = new JTextField();
-        textField.setPreferredSize(new Dimension(142,20));
-        textField.setMinimumSize(new Dimension(142,20));
+        Dimension textFieldDim = ConfigLoader.getDim("dim.ftic.textField");
+        textField.setPreferredSize(textFieldDim);
+        textField.setMinimumSize(textFieldDim);
         visibilityButton = new CustomToggleButton(" Hide ");
-        visibilityButton.setPreferredSize(new Dimension(68,20));
+        visibilityButton.setPreferredSize(ConfigLoader.getDim("dim.ftic.visButton"));
         deleteButton = new CustomButton("Delete");
 
         textField.setToolTipText("Enter function, e.g., 2x+3");
@@ -58,7 +60,7 @@ public class FunctionTextInputComponent extends JPanel {
                     graph.setValuesFromExpression(textField.getText());
                     textField.setBackground(Color.white);
                 }catch(IllegalArgumentException iaex){
-                    textField.setBackground(new Color(255, 57, 79));
+                    textField.setBackground(ConfigLoader.getColor("color.inputError"));
                 }
                 panel.updateInput(FunctionTextInputComponent.this);
             }
