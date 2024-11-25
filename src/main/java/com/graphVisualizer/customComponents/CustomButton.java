@@ -104,24 +104,8 @@ public class CustomButton extends JButton {
         setBackground(baseColor);
     }
 
-    public Color getBaseColor(){
-        return baseColor;
-    }
-
     public void setHoverColor(Color hoverColor) {
         this.hoverColor = hoverColor;
     }
 
-    public void setPressedColor(Color pressedColor) {
-        this.pressedColor = pressedColor;
-    }
-
-    public Color getTextColor() {
-        return textColor;
-    }
-
-    public void setTextColor(Color textColor) {
-        this.textColor = textColor;
-        setForeground(textColor);
-    }
 }
