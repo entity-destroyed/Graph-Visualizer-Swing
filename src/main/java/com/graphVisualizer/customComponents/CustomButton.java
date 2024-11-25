@@ -96,16 +96,4 @@ public class CustomButton extends JButton {
         revalidate();
         repaint(); // Force repaint and layout recalculation
     }
-
-
-    // Getters and setters for customization
-    public void setBaseColor(Color baseColor) {
-        this.baseColor = baseColor;
-        setBackground(baseColor);
-    }
-
-    public void setHoverColor(Color hoverColor) {
-        this.hoverColor = hoverColor;
-    }
-
 }
