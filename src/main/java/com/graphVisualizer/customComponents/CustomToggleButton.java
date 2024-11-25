@@ -10,7 +10,7 @@ public class CustomToggleButton extends CustomButton {
 
     private boolean selected = false; // Initial state: not selected
     private final Color selectedColor = ConfigLoader.getColor("color.hover"); // Color when selected
-    private Color unselectedColor = ConfigLoader.getColor("color.base"); // Default color for unselected state
+    private final Color unselectedColor = ConfigLoader.getColor("color.base"); // Default color for unselected state
 
     public CustomToggleButton(String text) {
         super(text); // Call the constructor of the parent class
@@ -68,26 +68,5 @@ public class CustomToggleButton extends CustomButton {
         // Force revalidation to recalculate the preferred size and trigger a layout update
         revalidate();
         repaint();
-    }
-
-    @Override
-    public void setText(String text) {
-        super.setText(text);
-        revalidate();
-        repaint(); // Force repaint and layout recalculation
-    }
-
-    // Optionally, you can add custom logic for the hover effect, just like the base button
-    @Override
-    public void setHoverColor(Color hoverColor) {
-        // We can override this if you want a custom hover effect for the toggle button
-        super.setHoverColor(hoverColor);
-    }
-
-    @Override
-    public void setBaseColor(Color baseColor) {
-        // Overriding to set the unselected color
-        this.unselectedColor = baseColor;
-        super.setBaseColor(baseColor);
     }
 }
