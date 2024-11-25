@@ -91,5 +91,6 @@ public class FunctionTextInputComponent extends JPanel {
     }
     public void setExpression(String expression){
         textField.setText(expression);
+        graph.setExpression(expression);
     }
 }
