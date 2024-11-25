@@ -12,12 +12,12 @@ import java.util.List;
 
 public class DrawingPane extends JPanel {
 
-    private final int width = 400;
-    private final int height = 400;
+    private final int width = ConfigLoader.getInt("dim.dp.width");
+    private final int height = ConfigLoader.getInt("dim.dp.height");
     private final int centerX;
     private final int centerY;
-    private List<Graph> graphList = new ArrayList<>();
-    private List<Line2D> gridLines = new ArrayList<>();
+    private final List<Graph> graphList = new ArrayList<>();
+    private final List<Line2D> gridLines = new ArrayList<>();
 
     public DrawingPane(){
         setOpaque(false);
