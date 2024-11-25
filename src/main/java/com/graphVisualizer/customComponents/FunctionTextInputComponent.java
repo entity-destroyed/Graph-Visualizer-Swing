@@ -31,7 +31,7 @@ public class FunctionTextInputComponent extends JPanel {
         Dimension textFieldDim = ConfigLoader.getDim("dim.ftic.textField");
         textField.setPreferredSize(textFieldDim);
         textField.setMinimumSize(textFieldDim);
-        visibilityButton = new CustomToggleButton(" Hide ");
+        visibilityButton = new CustomToggleButton("Hide");
         visibilityButton.setPreferredSize(ConfigLoader.getDim("dim.ftic.visButton"));
         deleteButton = new CustomButton("Delete");
 
