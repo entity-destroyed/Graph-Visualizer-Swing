@@ -41,7 +41,7 @@ class FunctionTextInputComponentTest {
     }
 
     @Test
-    void testGraphVisibilityToggle() throws InterruptedException {
+    void testGraphVisibilityToggle(){
         assertTrue(component.getGraph().isVisible(), "Graph should initially be visible.");
 
         // Simulate clicking the visibility button
@@ -62,7 +62,7 @@ class FunctionTextInputComponentTest {
 
     @Test
     @Disabled
-    void testDeleteButtonAction() throws Exception {
+    void testDeleteButtonAction(){
         // TODO later: test delete button
     }
 
@@ -86,7 +86,7 @@ class FunctionTextInputComponentTest {
     @Test
     @Disabled
     // TODO later: test focus lost
-    void testFocusLostInvalidInput() {
+    void testFocusLostInvalidInput() throws Exception{
         String invalidExpression = "invalid";
         JTextField textField = (JTextField) getChildComponentByName(component, JTextField.class);
         assertNotNull(textField, "Text field should be present.");
