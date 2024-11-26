@@ -10,7 +10,7 @@ import java.awt.*;
  * Component for storing and managing an individual function.<br>
  * Instances of this class are contained in {@code FunctionInputsPanel}.
  * <p>
- *     This component is made out of three subcomponents:
+ * This component is made out of three subcomponents:
  *     <ul>
  *         <li>{@code textField}: the input for the mathematical expression of the function</li>
  *         <li>{@code visibilityButton}: enables the user to hide the function temporary</li>
@@ -27,24 +27,35 @@ import java.awt.*;
  */
 public class FunctionTextInputComponent extends JPanel {
 
-    /**The graph of the function.*/
+    /**
+     * The graph of the function.
+     */
     private final Graph graph;
 
-    /**Text input field for the mathematical expression.*/
+    /**
+     * Text input field for the mathematical expression.
+     */
     private JTextField textField;
 
-    /**For hiding or showing the graph of the function in the {@code DrawingPane}.
+    /**
+     * For hiding or showing the graph of the function in the {@code DrawingPane}.
+     *
      * @see DrawingPane
-     * @see #toggleVisibility(FunctionInputsPanel) */
+     * @see #toggleVisibility(FunctionInputsPanel)
+     */
     private CustomToggleButton visibilityButton;
 
-    /**Deletes the function and the component from the {@code FunctionInputPanel}
+    /**
+     * Deletes the function and the component from the {@code FunctionInputPanel}
      * as well as from the {@code DrawingPane}
-     * @see DrawingPane*/
+     *
+     * @see DrawingPane
+     */
     private CustomButton deleteButton;
 
     /**
      * Initializes the component with respect to the {@code FunctionInputsPanel} it's in.
+     *
      * @param panel the {@code FunctionInputsPanel} that contains this component
      * @see FunctionInputsPanel
      */
@@ -56,6 +67,7 @@ public class FunctionTextInputComponent extends JPanel {
 
     /**
      * Sets the layout, size, background and alignment for all three subcomponents.
+     *
      * @see #textField
      * @see #visibilityButton
      * @see #deleteButton
@@ -94,6 +106,7 @@ public class FunctionTextInputComponent extends JPanel {
 
     /**
      * Sets {@code ActionListeners} for the buttons, and {@code FocusListener} for the {@code textField}
+     *
      * @param panel the {@code FunctionInputsPanel} which has to be updated when the user entered the expression.
      * @see FunctionInputsPanel
      * @see #textField
@@ -105,10 +118,10 @@ public class FunctionTextInputComponent extends JPanel {
         textField.addActionListener(event -> textField.transferFocus());
         textField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                try{
+                try {
                     graph.setValuesFromExpression(textField.getText());
                     textField.setBackground(Color.white);
-                }catch(IllegalArgumentException iaex){
+                } catch (IllegalArgumentException iaex) {
                     textField.setBackground(ConfigLoader.getColor("color.inputError"));
                 }
                 panel.updateInput(FunctionTextInputComponent.this);
@@ -124,6 +137,7 @@ public class FunctionTextInputComponent extends JPanel {
 
     /**
      * Sets the visibility of the {@code Graph} of the function
+     *
      * @param panel the {@code FunctionInputsPanel} which has to be updated when visibility changed.
      * @see FunctionInputsPanel
      * @see Graph
@@ -141,8 +155,8 @@ public class FunctionTextInputComponent extends JPanel {
      * @param c the color to set the border to
      * @see #textField
      */
-    public void setBorderColor(Color c){
-        textField.setBorder(BorderFactory.createLineBorder(c,2));
+    public void setBorderColor(Color c) {
+        textField.setBorder(BorderFactory.createLineBorder(c, 2));
     }
 
     /**
@@ -160,19 +174,20 @@ public class FunctionTextInputComponent extends JPanel {
      * @return the current expression as a {@code String}
      * @see #textField
      */
-    public String getExpression(){
+    public String getExpression() {
         return textField.getText();
     }
 
     /**
      * Sets the expression to this component and to the corresponding {@code Graph}
+     *
      * @param expression the expression to be set.
      * @see #graph
      * @see Graph
      * @see Graph#setExpression(String)
      * @see #textField
      */
-    public void setExpression(String expression){
+    public void setExpression(String expression) {
         textField.setText(expression);
         graph.setExpression(expression);
     }

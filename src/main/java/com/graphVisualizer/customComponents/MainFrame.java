@@ -32,7 +32,7 @@ public class MainFrame extends JFrame {
     /**
      * Parameterless constructor: creates the whole of the window, shows the menu
      */
-    public MainFrame(){
+    public MainFrame() {
         setTitle("Function Visualizer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(ConfigLoader.getDim("dim.window"));
@@ -73,7 +73,6 @@ public class MainFrame extends JFrame {
      * @see FunctionTextInputComponent
      * @see DrawingPane
      * @see com.graphVisualizer.math.Graph
-     *
      */
     private void initEmptyScenePanel() {
         JPanel emptyScene = new JPanel(new BorderLayout(10, 10));
@@ -99,7 +98,8 @@ public class MainFrame extends JFrame {
 
     /**
      * Switches scenes in the {@code CardLayout} based on the {@code sceneName}.
-     * @param sceneName
+     *
+     * @param sceneName the name of the scene to switch to
      */
     private void switchToScene(String sceneName) {
         cardLayout.show(basePanel, sceneName);

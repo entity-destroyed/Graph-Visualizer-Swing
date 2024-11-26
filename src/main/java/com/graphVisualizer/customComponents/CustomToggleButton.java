@@ -10,10 +10,10 @@ import java.awt.event.MouseEvent;
  * {@code CustomToggleButton} is an extension of {@code CustomButton} that supports a toggling state.
  * It changes its background color between a selected and an unselected state when clicked.
  * The colors are configured using the {@code ConfigLoader} utility.
- *
+ * <p>
  * This class adds a mouse listener to toggle the button's state on user interaction and overrides
  * the {@code paintComponent} method to visually represent the current state of the button.
- *
+ * <p>
  * The initial state of the button is not selected.
  *
  * @see CustomButton
@@ -33,6 +33,7 @@ public class CustomToggleButton extends CustomButton {
      * Represents the background color of the button
      * when it is in the selected state. This color is loaded from the configuration
      * file using the {@code ConfigLoader} utility with the key "color.hover".
+     *
      * @see ConfigLoader
      */
     private final Color selectedColor = ConfigLoader.getColor("color.hover");
@@ -41,6 +42,7 @@ public class CustomToggleButton extends CustomButton {
      * Used for the unselected state of the {@code CustomToggleButton}.
      * This color is initialized using the {@code ConfigLoader} utility to fetch the color value
      * from the application's configuration file.
+     *
      * @see ConfigLoader
      */
     private final Color unselectedColor = ConfigLoader.getColor("color.base"); // Default color for unselected state

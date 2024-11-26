@@ -1,4 +1,5 @@
 package com.graphVisualizer.customComponents;
+
 import com.graphVisualizer.utils.ConfigLoader;
 
 import javax.swing.*;
@@ -9,12 +10,14 @@ import java.awt.event.MouseEvent;
 /**
  * {@code CustomButton} is a specialized {@code JButton} that provides a customized UI experience
  * with rounded corners, color transitions on hover and press events, and modern font styling.
+ *
  * @see JButton
  */
 public class CustomButton extends JButton {
     /**
      * The default {@code Color} for the button.
      * This color is loaded from the configuration file using the key "color.base".
+     *
      * @see ConfigLoader
      */
     protected Color baseColor = ConfigLoader.getColor("color.base");
@@ -25,6 +28,7 @@ public class CustomButton extends JButton {
      * <p>
      * This color is loaded from the application's configuration
      * using the key "color.hover" via the {@code ConfigLoader} class.
+     *
      * @see ConfigLoader
      */
     protected Color hoverColor = ConfigLoader.getColor("color.hover");
@@ -33,6 +37,7 @@ public class CustomButton extends JButton {
      * The {@code Color} used when the button is pressed.
      * This color value is loaded via the {@link ConfigLoader#getColor(String)} method
      * using the key "color.pressed" from a configuration file.
+     *
      * @see ConfigLoader
      * @see ConfigLoader#getColor(String)
      */
@@ -41,6 +46,7 @@ public class CustomButton extends JButton {
     /**
      * The color used for the text displayed on the button. This value is loaded from the
      * application's configuration file using the key "color.text".
+     *
      * @see ConfigLoader
      */
     protected Color textColor = ConfigLoader.getColor("color.text");
@@ -49,12 +55,14 @@ public class CustomButton extends JButton {
      * The radius for rounded corners of the {@code CustomButton}.
      * This value determines the curvature of the button's edges,
      * giving it a rounded appearance.
+     *
      * @see ConfigLoader
      */
     protected final int cornerRadius = 10;
 
     /**
      * Initializes the button with the given {@code text}.
+     *
      * @param text the text of the button
      */
     public CustomButton(String text) {

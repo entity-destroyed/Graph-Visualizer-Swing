@@ -16,6 +16,7 @@ public class Graph {
      * The interval between each calculated point on the graph.
      * This variable is used to determine the step size for iterating through the range of the graph.
      * Its value is loaded from a configuration file using the key "g.step".
+     *
      * @see ConfigLoader
      */
     private final double step = ConfigLoader.getDouble("g.step");
@@ -71,15 +72,15 @@ public class Graph {
      * Constructs a new Graph object. Initializes the 'values' array based on the
      * range from 'begin' to 'end' with a specified 'step' size, and initializes the 'lines'
      * array to store line segments representing the graph.
-     *<p>
+     * <p>
      * The 'lines' array is set such that each 'Line2D' object is initialized to represent
      * a line segment with default coordinates (0.0, 0.0, 0.0, 0.0).
      */
-    public Graph(){
-        values = new double[(int) Math.ceil((end-begin)/step)];
-        lines = new Line2D[values.length-1];
-        for(int i = 0; i < values.length-1; i++){
-            lines[i] = new Line2D.Double(0.0,0.0,0.0,0.0);
+    public Graph() {
+        values = new double[(int) Math.ceil((end - begin) / step)];
+        lines = new Line2D[values.length - 1];
+        for (int i = 0; i < values.length - 1; i++) {
+            lines[i] = new Line2D.Double(0.0, 0.0, 0.0, 0.0);
         }
     }
 
@@ -90,13 +91,13 @@ public class Graph {
      * @param centerX the X coordinate of the graph's center
      * @param centerY the Y coordinate of the graph's center
      */
-    public void calculateGraphCurve(int centerX, int centerY){
-        for(int i = 1; i < values.length - 1; i++){
+    public void calculateGraphCurve(int centerX, int centerY) {
+        for (int i = 1; i < values.length - 1; i++) {
             lines[i].setLine(
-                    begin*scale + (i-1)*scale*step + centerX,
-                    values[i-1]*(-1)*scale + centerY,
-                    begin*scale + (i)*scale*step + centerX,
-                    values[i]*(-1)*scale + centerY);
+                    begin * scale + (i - 1) * scale * step + centerX,
+                    values[i - 1] * (-1) * scale + centerY,
+                    begin * scale + (i) * scale * step + centerX,
+                    values[i] * (-1) * scale + centerY);
         }
     }
 
@@ -109,12 +110,12 @@ public class Graph {
      *                   expression where 'x' is the variable.
      * @throws IllegalArgumentException if the provided expression is invalid or cannot be evaluated.
      */
-    public void setValuesFromExpression(String expression) throws IllegalArgumentException{
+    public void setValuesFromExpression(String expression) throws IllegalArgumentException {
         this.expression = expression;
         CustomEvaluator evaluator = new CustomEvaluator();
         StaticVariableSet<Double> variables = new StaticVariableSet<>();
 
-        for(double x = begin, i = 0; i < values.length; x+= step, i+=1){
+        for (double x = begin, i = 0; i < values.length; x += step, i += 1) {
             variables.set("x", x);
             values[(int) i] = evaluator.evaluate(expression, variables);
         }
@@ -125,7 +126,7 @@ public class Graph {
      *
      * @return true if the graph is visible, false otherwise
      */
-    public boolean isVisible(){
+    public boolean isVisible() {
         return visible;
     }
 
@@ -134,7 +135,7 @@ public class Graph {
      *
      * @return an array of Line2D objects representing the line segments of the graph.
      */
-    public Line2D[] getLines(){
+    public Line2D[] getLines() {
         return lines;
     }
 
@@ -143,7 +144,7 @@ public class Graph {
      *
      * @param v a boolean where true makes the graph visible and false makes it invisible
      */
-    public void setVisible(boolean v){
+    public void setVisible(boolean v) {
         visible = v;
     }
 
@@ -152,15 +153,16 @@ public class Graph {
      *
      * @return the current color of the graph
      */
-    public Color getColor(){
+    public Color getColor() {
         return color;
     }
+
     /**
      * Sets the color of the graph to the specified {@code Color} object.
      *
      * @param c the {@code Color} to set for the graph
      */
-    public void setColor(Color c){
+    public void setColor(Color c) {
         color = c;
     }
 
@@ -180,7 +182,7 @@ public class Graph {
      *                   to the graph. The expression should be a valid
      *                   mathematical expression where 'x' is the variable.
      */
-    public void setExpression(String expression){
+    public void setExpression(String expression) {
         this.expression = expression;
     }
 }
