@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The {@code DrawingPane} class is a custom {@code JPanel} that is used to draw {@code Graphs}.
+ * It initializes the size of the panel based on configuration values and allows
+ * for adding, updating, and removing graphs.
+ * @see JPanel
+ * @see Graph
+ */
 public class DrawingPane extends JPanel {
 
     private final int width = ConfigLoader.getInt("dim.dp.width");
@@ -19,6 +26,9 @@ public class DrawingPane extends JPanel {
     private final List<Graph> graphList = new ArrayList<>();
     private final List<Line2D> gridLines = new ArrayList<>();
 
+    /**
+     * Initializes the drawing pane with specific configurations.
+     */
     public DrawingPane(){
         setOpaque(false);
         setPreferredSize(new Dimension(width, height));
@@ -31,6 +41,9 @@ public class DrawingPane extends JPanel {
 
     }
 
+    /**
+     * Function to draw the grid lines onto the {@code DrawingPane}.
+     */
     private void initGridLines(){
         // Add center vertical line
         gridLines.add(new Line2D.Double(centerX, 0, centerX, height));
@@ -38,26 +51,49 @@ public class DrawingPane extends JPanel {
         gridLines.add(new Line2D.Double(0, centerY, width, centerY));
     }
 
+    /**
+     * Adds a {@code Graph} to the {@code DrawingPane}.
+     * @param graph the {@code Graph} to be added
+     */
     public void addGraph(Graph graph){
         graphList.add(graph);
         repaint();
     }
 
+    /**
+     * Updates the curve of the {@code Graph}.
+     * @param graph the {@code Graph} to be updated
+     */
     public void updateGraph(Graph graph){
         graph.calculateGraphCurve(centerX, centerY);
         repaint();
     }
 
+    /**
+     * @param graph the {@code Graph} to be removed
+     */
     public void removeGraph(Graph graph){
         graphList.remove(graph);
         repaint();
     }
 
+    /**
+     * Determines if the {@code Line} is out of bounds
+     * @param line the {@code Line} to be checked
+     * @return true if the line does not fit the {@code DrawingPane};
+     * @see Line2D
+     */
     private boolean filterLineOutOfSight(Line2D line){
         return (this.contains((int) Math.round(line.getP1().getX()),(int) Math.round(line.getP1().getY())) ||
                 this.contains((int) Math.round(line.getP2().getX()),(int) Math.round(line.getP2().getY())));
     }
 
+    /**
+     * Overrides the paintComponent method to draw the grid and {@code Graph} lines onto the {@code DrawingPane}.
+     *
+     * @param g the Graphics object used for drawing
+     * @see Graph
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -79,6 +115,13 @@ public class DrawingPane extends JPanel {
                 });
     }
 
+
+    /**
+     * Retrieves the list of all {@code Graph} objects currently contained within the {@code DrawingPane}.
+     *
+     * @return a list of Graph objects present in the DrawingPane
+     * @see Graph
+     */
     public List<Graph> getGraphList() {
         return graphList;
     }

@@ -6,15 +6,28 @@ import com.graphVisualizer.utils.GraphSerializer;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * This is the main frame of the application.
+ */
 public class MainFrame extends JFrame {
 
+    /**
+     * String constant for the Menu layout component
+     */
     private final String MENU = "Menu";
+    /**
+     * String constant for the EmptyScene layout component
+     */
     private final String EMPTY_SCENE = "EmptyScene";
 
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel basePanel = new JPanel(cardLayout);
     private FunctionInputsPanel functionInputsPanel;
 
+    /**
+     * Parameterless constructor: creates the whole of the window, shows the menu
+     */
     public MainFrame(){
         setTitle("Function Visualizer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +41,9 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Initializes the Menu panel with two buttons: <i>New empty pane</i>, and <i>Load previous</i>.
+     */
     private void initMenuPanel() {
         JPanel menuPanel = new JPanel(new GridBagLayout());
         CustomButton emptySceneButton = new CustomButton("New empty pane");
@@ -41,6 +57,19 @@ public class MainFrame extends JFrame {
         basePanel.add(menuPanel, MENU);
     }
 
+    /**
+     * Creates a panel containing the Graph Visualizer user interface (empty by default), and adds it to the base panel
+     * providing accessibility for the user from the menu.
+     * <p>
+     * The panel it creates, contains a {@code FunctionInputsPanel} that manages the inputs through {@code FunctionTextInputComponent}s,
+     * and a {@code DrawingPane} where the {@code Graph} of the functions are drawn to.
+     *
+     * @see FunctionInputsPanel
+     * @see FunctionTextInputComponent
+     * @see DrawingPane
+     * @see com.graphVisualizer.math.Graph
+     *
+     */
     private void initEmptyScenePanel() {
         JPanel emptyScene = new JPanel(new BorderLayout(10, 10));
         DrawingPane drawingPane = new DrawingPane();
@@ -63,10 +92,22 @@ public class MainFrame extends JFrame {
         basePanel.add(emptyScene, EMPTY_SCENE);
     }
 
+    /**
+     * Switches scenes in the card layout based on the {@code sceneName}.
+     * @param sceneName
+     */
     private void switchToScene(String sceneName) {
         cardLayout.show(basePanel, sceneName);
     }
 
+    /**
+     * Loads the saved functions from file, and feeds them into the {@code FunctionInputsPanel} where they get stored in a
+     * {@code Graph} object contained by {@code FunctionTextInputComponent}s.
+     *
+     * @see FunctionInputsPanel
+     * @see FunctionTextInputComponent
+     * @see com.graphVisualizer.math.Graph
+     */
     private void loadGraphs() {
         try {
             functionInputsPanel.setMultipleInputs(GraphSerializer.readGraphsFromFile());
@@ -78,6 +119,11 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Saves the present functions of the {@code FunctionInputsPanel} by writing them into the data file.
+     *
+     * @see FunctionInputsPanel
+     */
     private void saveGraphs() {
         try {
             GraphSerializer.writeGraphsToFile(functionInputsPanel.getAllInputs());
@@ -87,6 +133,9 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Navigates back to the <i>Menu</i> in the card layout.
+     */
     private void backToMenu() {
         functionInputsPanel.deleteAll();
         switchToScene(MENU);
