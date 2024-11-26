@@ -20,6 +20,7 @@ public class CustomEvaluator extends DoubleEvaluator {
      * This function is defined with the name "sqrt" and takes one argument.
      */
     private static final Function SQRT = new Function("sqrt", 1);
+
     /**
      * A set of parameters used by the {@code CustomEvaluator} to define the functions and operators
      * it supports. The parameters include the default parameters from {@code DoubleEvaluator}

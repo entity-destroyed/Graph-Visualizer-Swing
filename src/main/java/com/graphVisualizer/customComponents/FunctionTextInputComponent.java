@@ -135,14 +135,31 @@ public class FunctionTextInputComponent extends JPanel {
         visibilityButton.setText(isHidden ? "Show" : "Hide");
     }
 
+    /**
+     * Sets the border {@code Color} of the {@code textField} component to the specified color.
+     *
+     * @param c the color to set the border to
+     * @see #textField
+     */
     public void setBorderColor(Color c){
         textField.setBorder(BorderFactory.createLineBorder(c,2));
     }
 
+    /**
+     * Retrieves the {@code Graph} associated with this component.
+     *
+     * @return the current {@code Graph} instance of this component.
+     */
     public Graph getGraph() {
         return graph;
     }
 
+    /**
+     * Retrieves the current expression text from the {@code textField} component.
+     *
+     * @return the current expression as a {@code String}
+     * @see #textField
+     */
     public String getExpression(){
         return textField.getText();
     }
@@ -150,7 +167,10 @@ public class FunctionTextInputComponent extends JPanel {
     /**
      * Sets the expression to this component and to the corresponding {@code Graph}
      * @param expression the expression to be set.
+     * @see #graph
      * @see Graph
+     * @see Graph#setExpression(String)
+     * @see #textField
      */
     public void setExpression(String expression){
         textField.setText(expression);

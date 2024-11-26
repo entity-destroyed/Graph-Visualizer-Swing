@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
  * The initial state of the button is not selected.
  *
  * @see CustomButton
+ * @see ConfigLoader
  */
 public class CustomToggleButton extends CustomButton {
 
@@ -27,6 +28,7 @@ public class CustomToggleButton extends CustomButton {
      * affecting the visual representation and behavior of the button.
      */
     private boolean selected = false;
+
     /**
      * Represents the background color of the button
      * when it is in the selected state. This color is loaded from the configuration
@@ -34,6 +36,7 @@ public class CustomToggleButton extends CustomButton {
      * @see ConfigLoader
      */
     private final Color selectedColor = ConfigLoader.getColor("color.hover");
+
     /**
      * Used for the unselected state of the {@code CustomToggleButton}.
      * This color is initialized using the {@code ConfigLoader} utility to fetch the color value
@@ -72,7 +75,7 @@ public class CustomToggleButton extends CustomButton {
      * Enables antialiasing for smoother graphics, sets the background color based on the selection state,
      * and draws the button with rounded corners.
      *
-     * @param g the Graphics context in which to paint
+     * @param g the {@code Graphics} context in which to paint
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -97,6 +100,11 @@ public class CustomToggleButton extends CustomButton {
         super.paintComponent(g);
     }
 
+    /**
+     * Returns the selected state of this toggle button.
+     *
+     * @return {@code true} if the button is selected; {@code false} otherwise
+     */
     public boolean isSelected() {
         return selected;
     }

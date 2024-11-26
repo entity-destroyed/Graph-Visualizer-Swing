@@ -11,11 +11,12 @@ import java.util.Properties;
  * in the classpath.
  *<p>
  * This class provides methods to retrieve configuration values as different types:
- * String, int, double, Color, and Dimension.
+ * {@code String}, {@code int}, {@code double}, {@code Color}, and {@code Dimension}.
  *<p>
  * Configuration values are loaded once, during the class initialization.
  * If the properties file is not found or there is an issue during loading,
- * the class will throw a RuntimeException.
+ * the class will throw a {@code RuntimeException}.
+ * @see RuntimeException
  */
 public class ConfigLoader {
 
@@ -24,7 +25,7 @@ public class ConfigLoader {
      * The properties are loaded from a file named "config.properties" present in the classpath.
      * This instance is initialized only once during the class loading.
      *
-     * If the properties file is not found or there is an error in loading, a RuntimeException is thrown.
+     * If the properties file is not found or there is an error in loading, a {@code RuntimeException} is thrown.
      */
     private static final Properties properties = new Properties();
 
@@ -60,7 +61,7 @@ public class ConfigLoader {
     }
 
     /**
-     * Retrieves a configuration property value as a double.
+     * Retrieves a configuration property value as a {@code double}.
      *
      * @param key the key of the property to be fetched
      * @return the double value of the property
@@ -71,7 +72,7 @@ public class ConfigLoader {
     }
 
     /**
-     * Retrieves the color value associated with the specified key from the configuration properties.
+     * Retrieves the {@code Color} value associated with the specified key from the configuration properties.
      *
      * @param key the key used to look up the color in the properties file
      * @return the Color object corresponding to the RGB values stored in the properties
@@ -82,11 +83,11 @@ public class ConfigLoader {
     }
 
     /**
-     * Retrieves the dimensions from the configuration properties file using the specified key.
-     * The dimensions are read as a comma-separated string and converted into a Dimension object.
+     * Retrieves the {@code Dimensions} from the configuration properties file using the specified key.
+     * The dimensions are read as a comma-separated string and converted into a {@code Dimension} object.
      *
      * @param key the key in the properties file whose value represents the dimensions
-     * @return a Dimension object representing the width and height from the properties file.
+     * @return a {@code Dimension} object representing the width and height from the properties file.
      */
     public static Dimension getDim(String key){
         String[] dim = properties.getProperty(key).trim().split(",");

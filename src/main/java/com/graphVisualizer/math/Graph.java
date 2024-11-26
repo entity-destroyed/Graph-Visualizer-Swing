@@ -31,23 +31,23 @@ public class Graph {
      */
     private final int begin = ConfigLoader.getInt("g.begin");
     /**
-     * The `end` variable represents the endpoint value of the graph on the x-axis,
+     * The {@code end} variable represents the endpoint value of the graph on the x-axis,
      * loaded from the application configuration.
-     * This value determines the upper limit of the x-axis range for the graph.
+     * This value determines the upper limit of the x-axis range for the {@code Graph}.
      */
     private final int end = ConfigLoader.getInt("g.end");
     /**
      * Represents an array of pre-calculated values for plotting a graph curve.
-     * The size of the array is determined by the range specified by the `begin` and `end` values,
-     * divided by the `step` value. These values are loaded from configuration settings.
+     * The size of the array is determined by the range specified by the {@code begin} and {@code end} values,
+     * divided by the {@code step} value. These values are loaded from configuration settings.
      *
      * @see Graph#calculateGraphCurve(int, int) for usage in plotting the graph.
      * @see Graph#setValuesFromExpression(String) for setting values based on an expression.
      */
     private final double[] values;
     /**
-     * An array of Line2D objects representing the lines or segments that form the graph.
-     * Each Line2D object in this array corresponds to a segment between two consecutive
+     * An array of {@code Line2D} objects representing the lines or segments that form the graph.
+     * Each {@code Line2D} object in this array corresponds to a segment between two consecutive
      * calculated data points on the graph.
      */
     private final Line2D[] lines;

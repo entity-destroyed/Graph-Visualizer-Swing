@@ -8,16 +8,20 @@ import java.awt.*;
 
 
 /**
- * This is the main frame of the application.
+ * The MainFrame class represents the main window of the Function Visualizer application.
+ * It extends {@code JFrame} and uses a {@code CardLayout} to switch between different panels.
+ * It consists of the menu panel and the empty scene panel.<br>
+ * Both of the menu options shows the empty scene, however the <i>Load previous</i> option loads
+ * the stored {@code Graphs}.
  */
 public class MainFrame extends JFrame {
 
     /**
-     * String constant for the Menu layout component
+     * {@code String} constant for the Menu layout component
      */
     private final String MENU = "Menu";
     /**
-     * String constant for the EmptyScene layout component
+     * {@code String} constant for the EmptyScene layout component
      */
     private final String EMPTY_SCENE = "EmptyScene";
 
@@ -42,7 +46,7 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Initializes the Menu panel with two buttons: <i>New empty pane</i>, and <i>Load previous</i>.
+     * Initializes the {@code Menu} panel with two buttons: <i>New empty pane</i>, and <i>Load previous</i>.
      */
     private void initMenuPanel() {
         JPanel menuPanel = new JPanel(new GridBagLayout());
@@ -58,11 +62,12 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Creates a panel containing the Graph Visualizer user interface (empty by default), and adds it to the base panel
-     * providing accessibility for the user from the menu.
+     * Creates a panel containing the Graph Visualizer user interface (empty by default),
+     * and adds it to the base panel providing accessibility for the user from the menu.
      * <p>
-     * The panel it creates, contains a {@code FunctionInputsPanel} that manages the inputs through {@code FunctionTextInputComponent}s,
-     * and a {@code DrawingPane} where the {@code Graph} of the functions are drawn to.
+     * The panel it creates, contains a {@code FunctionInputsPanel} that manages the
+     * inputs through {@code FunctionTextInputComponent}s, and a {@code DrawingPane}
+     * where the {@code Graph} of the functions are drawn to.
      *
      * @see FunctionInputsPanel
      * @see FunctionTextInputComponent
@@ -93,7 +98,7 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Switches scenes in the card layout based on the {@code sceneName}.
+     * Switches scenes in the {@code CardLayout} based on the {@code sceneName}.
      * @param sceneName
      */
     private void switchToScene(String sceneName) {
@@ -101,8 +106,8 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Loads the saved functions from file, and feeds them into the {@code FunctionInputsPanel} where they get stored in a
-     * {@code Graph} object contained by {@code FunctionTextInputComponent}s.
+     * Loads the saved functions from file, and feeds them into the {@code FunctionInputsPanel}
+     * where they get stored in a {@code Graph} object contained by {@code FunctionTextInputComponent}s.
      *
      * @see FunctionInputsPanel
      * @see FunctionTextInputComponent

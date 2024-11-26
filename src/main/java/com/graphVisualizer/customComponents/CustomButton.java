@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
  */
 public class CustomButton extends JButton {
     /**
-     * The default color for the button.
+     * The default {@code Color} for the button.
      * This color is loaded from the configuration file using the key "color.base".
      * @see ConfigLoader
      */
@@ -22,17 +22,19 @@ public class CustomButton extends JButton {
     /**
      * The color used for the button when the mouse hovers over it.
      *
-     * <p>This color is loaded from the application's configuration
-     * using the key "color.hover" via the `ConfigLoader` class.
+     * <p>
+     * This color is loaded from the application's configuration
+     * using the key "color.hover" via the {@code ConfigLoader} class.
      * @see ConfigLoader
      */
     protected Color hoverColor = ConfigLoader.getColor("color.hover");
 
     /**
-     * The color used when the button is pressed.
+     * The {@code Color} used when the button is pressed.
      * This color value is loaded via the {@link ConfigLoader#getColor(String)} method
      * using the key "color.pressed" from a configuration file.
      * @see ConfigLoader
+     * @see ConfigLoader#getColor(String)
      */
     protected Color pressedColor = ConfigLoader.getColor("color.pressed");
 
@@ -140,7 +142,7 @@ public class CustomButton extends JButton {
     /**
      * Calculates the preferred size of the button based on its text and padding.
      *
-     * @return the preferred size as a Dimension object
+     * @return the preferred size as a {@code Dimension} object
      */
     @Override
     public Dimension getPreferredSize() {

@@ -1,5 +1,6 @@
 package com.graphVisualizer.customComponents;
 
+import com.graphVisualizer.math.Graph;
 import com.graphVisualizer.utils.ConfigLoader;
 
 import javax.swing.*;
@@ -26,7 +27,8 @@ public class FunctionInputsPanel extends JPanel {
     private CustomButton newButton;
 
     /**The pane on which functions' {@code Graphs} are being drawn to.
-     * @see com.graphVisualizer.math.Graph*/
+     * @see com.graphVisualizer.math.Graph
+     * @see DrawingPane#addGraph(Graph) */
     private final DrawingPane drawingPane;
 
     /**List of the {@code FunctionTextInputComponent}s

@@ -91,8 +91,9 @@ public class DrawingPane extends JPanel {
     /**
      * Overrides the paintComponent method to draw the grid and {@code Graph} lines onto the {@code DrawingPane}.
      *
-     * @param g the Graphics object used for drawing
+     * @param g the {@code Graphics} object used for drawing
      * @see Graph
+     * @see Graphics
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -119,7 +120,7 @@ public class DrawingPane extends JPanel {
     /**
      * Retrieves the list of all {@code Graph} objects currently contained within the {@code DrawingPane}.
      *
-     * @return a list of Graph objects present in the DrawingPane
+     * @return a list of {@code Graph} objects present in the {@code DrawingPane}
      * @see Graph
      */
     public List<Graph> getGraphList() {
