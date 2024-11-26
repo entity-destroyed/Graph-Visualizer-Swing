@@ -10,6 +10,7 @@ import java.util.List;
 public class FunctionInputsPanel extends JPanel {
 
     private final int maxComponentCount = ConfigLoader.getInt("fip.maxCompCount");
+    private final int maxFunctionCount = ConfigLoader.getInt("fip.maxFuncCount");
     private CustomButton newButton;
     private final DrawingPane drawingPane;
     private final List<FunctionTextInputComponent> inputComponents;
@@ -41,13 +42,13 @@ public class FunctionInputsPanel extends JPanel {
     private void addNewInput() {
         FunctionTextInputComponent newInput = new FunctionTextInputComponent(this);
         inputComponents.add(newInput);
-        float hue = (float) (inputComponents.size() - 1) / maxComponentCount;
+        float hue = (float) (inputComponents.size() - 1) / maxFunctionCount;
         Color graphColor = Color.getHSBColor(hue, 0.9f, 1f);
         newInput.getGraph().setColor(graphColor);
         newInput.setBorderColor(graphColor);
         add(newInput, getComponentCount() - 1);  // Insert before the 'Add new' button
         drawingPane.addGraph(newInput.getGraph());
-        if(inputComponents.size() == maxComponentCount)
+        if(inputComponents.size() == maxFunctionCount)
             newButton.setVisible(false);
         revalidate();
         repaint();
@@ -56,7 +57,7 @@ public class FunctionInputsPanel extends JPanel {
     public void deleteInput(FunctionTextInputComponent input) {
         drawingPane.removeGraph(input.getGraph());
         inputComponents.remove(input);
-        if(inputComponents.size() == maxComponentCount - 1)
+        if(inputComponents.size() == maxFunctionCount - 1)
             newButton.setVisible(true);
         remove(input);
         revalidate();
