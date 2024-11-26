@@ -4,6 +4,7 @@ import com.graphVisualizer.math.Graph;
 import com.graphVisualizer.utils.ConfigLoader;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -155,8 +156,18 @@ public class FunctionTextInputComponent extends JPanel {
      * @param c the color to set the border to
      * @see #textField
      */
-    public void setBorderColor(Color c) {
+    public void setTextFieldBorderColor(Color c) {
         textField.setBorder(BorderFactory.createLineBorder(c, 2));
+    }
+
+    /**
+     * Retrieves the border of the {@code textField} component.
+     *
+     * @return the border of the {@code textField}
+     * @see #textField
+     */
+    public Border getTextFieldBorder(){
+        return textField.getBorder();
     }
 
     /**

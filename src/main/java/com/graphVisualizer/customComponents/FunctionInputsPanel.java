@@ -100,7 +100,7 @@ public class FunctionInputsPanel extends JPanel {
         float hue = (float) (inputComponents.size() - 1) / maxFunctionCount;
         Color graphColor = Color.getHSBColor(hue, 0.9f, 1f);
         newInput.getGraph().setColor(graphColor);
-        newInput.setBorderColor(graphColor);
+        newInput.setTextFieldBorderColor(graphColor);
         add(newInput, getComponentCount() - 1);  // Insert before the 'Add new' button
         drawingPane.addGraph(newInput.getGraph());
         if (inputComponents.size() == maxFunctionCount)

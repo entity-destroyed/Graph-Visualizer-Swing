@@ -1,13 +1,13 @@
 package com.graphVisualizer.customComponents;
 
+import com.graphVisualizer.utils.ConfigLoader;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -31,11 +31,11 @@ class FunctionTextInputComponentTest {
     }
 
     @Test
-    void testSetBorderColor() {
+    void testSetTextFieldBorderColor() {
         Color testColor = Color.BLUE;
         SwingUtilities.invokeLater(() -> {
-            component.setBorderColor(testColor);
-            assertEquals(testColor, ((javax.swing.border.LineBorder) component.getBorder()).getLineColor(),
+            component.setTextFieldBorderColor(testColor);
+            assertEquals(testColor, ((javax.swing.border.LineBorder) component.getTextFieldBorder()).getLineColor(),
                     "Border color should match the set color.");
         });
     }
@@ -61,9 +61,14 @@ class FunctionTextInputComponentTest {
     }
 
     @Test
-    @Disabled
     void testDeleteButtonAction(){
-        // TODO later: test delete button
+        // Perform action by clicking the delete button
+        for (ActionListener actionListener : ((CustomButton) component.getComponent(2)).getActionListeners()) {
+            actionListener.actionPerformed(new ActionEvent(component.getComponent(2), ActionEvent.ACTION_PERFORMED, null));
+        }
+
+        // Verify that deleteInput is called once on the FunctionInputsPanel mock
+        Mockito.verify(mockPanel, Mockito.times(1)).deleteInput(component);
     }
 
     @Test
@@ -80,27 +85,27 @@ class FunctionTextInputComponentTest {
 
         assertEquals(expression, component.getGraph().getExpression(), "Graph should update with valid input.");
         assertEquals(Color.WHITE, textField.getBackground(), "Background should be white for valid input.");
-        //verify(mockPanel).updateInput(component);
     }
 
     @Test
-    @Disabled
-    // TODO later: test focus lost
-    void testFocusLostInvalidInput(){
-        String invalidExpression = "invalid";
-        JTextField textField = (JTextField) getChildComponentByName(component, JTextField.class);
-        assertNotNull(textField, "Text field should be present.");
+    public void testFocusLostInvalidInput() {
+        String invalidExpression = "invalid_expr";
 
         component.setExpression(invalidExpression);
-        FocusEvent focusEvent = new FocusEvent(textField, FocusEvent.FOCUS_LOST);
-        textField.grabFocus();
-        textField.transferFocus();
-        textField.getFocusListeners()[0].focusLost(focusEvent);
 
-        assertThrows(IllegalArgumentException.class, () -> component.getGraph().setValuesFromExpression(invalidExpression),
-                "Invalid expression should throw IllegalArgumentException.");
-        assertEquals(new Color(255, 57, 79), textField.getBackground(), "Background should indicate error for invalid input.");
-        verify(mockPanel).updateInput(component);
+        FocusEvent focusEvent = new FocusEvent(component.getComponent(0), FocusEvent.FOCUS_LOST);
+        for (FocusListener focusListener : component.getComponent(0).getFocusListeners()) {
+            focusListener.focusLost(focusEvent);
+        }
+
+        // Verify that the background color is set to the error color
+        Color expectedErrorColor = ConfigLoader.getColor("color.inputError");
+        Color actualBackgroundColor = component.getComponent(0).getBackground();
+
+        assertEquals(expectedErrorColor, actualBackgroundColor,"The background color should be the error color upon invalid input.");
+
+        // Verify that updateInput is called once on the FunctionInputsPanel mock
+        Mockito.verify(mockPanel, Mockito.times(1)).updateInput(component);
     }
 
     // Helper method to dispatch a mouse event to a component
