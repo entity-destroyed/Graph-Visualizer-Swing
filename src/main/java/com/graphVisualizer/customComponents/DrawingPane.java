@@ -130,4 +130,14 @@ public class DrawingPane extends JPanel {
     public List<Graph> getGraphList() {
         return graphList;
     }
+
+    /**
+     * For tests.<br>
+     * Retrieves the list of grid lines currently defined within the {@code DrawingPane}.
+     *
+     * @return a list of {@code Line2D} objects representing the grid lines.
+     */
+    public List<Line2D> getGridLines() {
+        return gridLines;
+    }
 }
