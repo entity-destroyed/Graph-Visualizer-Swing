@@ -9,7 +9,6 @@ import java.util.List;
 
 public class FunctionInputsPanel extends JPanel {
 
-    private final int maxComponentCount = ConfigLoader.getInt("fip.maxCompCount");
     private final int maxFunctionCount = ConfigLoader.getInt("fip.maxFuncCount");
     private CustomButton newButton;
     private final DrawingPane drawingPane;
