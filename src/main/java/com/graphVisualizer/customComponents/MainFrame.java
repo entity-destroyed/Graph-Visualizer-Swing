@@ -1,5 +1,7 @@
 package com.graphVisualizer.customComponents;
 
+import com.fathzer.soft.javaluator.StaticVariableSet;
+import com.graphVisualizer.math.CustomEvaluator;
 import com.graphVisualizer.utils.ConfigLoader;
 import com.graphVisualizer.utils.GraphSerializer;
 
@@ -121,6 +123,7 @@ public class MainFrame extends JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error loading graphs: " + e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
+            functionInputsPanel.deleteAll();
         }
     }
 
@@ -131,11 +134,27 @@ public class MainFrame extends JFrame {
      */
     private void saveGraphs() {
         try {
+            //check if all the expressions are correct
+            functionInputsPanel.getAllInputs().forEach(this::checkExpression);
             GraphSerializer.writeGraphsToFile(functionInputsPanel.getAllInputs());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error saving graphs: " + e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    /**
+     * Evaluates the given mathematical expression utilizing a custom evaluator with predefined variables.
+     * Throws an {@code IllegalArgumentException} if the expression is invalid.
+     *
+     * @param expression the mathematical expression to be evaluated
+     * @throws IllegalArgumentException if the expression is invalid
+     */
+    private void checkExpression(String expression) throws IllegalArgumentException{
+        CustomEvaluator evaluator = new CustomEvaluator();
+        StaticVariableSet<Double> variables = new StaticVariableSet<>();
+        variables.set("x", 1.5);
+        evaluator.evaluate(expression,variables);
     }
 
     /**
