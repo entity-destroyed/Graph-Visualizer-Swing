@@ -22,6 +22,7 @@ public class DrawingPane extends JPanel {
 
     private final int width = ConfigLoader.getInt("dim.dp.width");
     private final int height = ConfigLoader.getInt("dim.dp.height");
+    private double scale = ConfigLoader.getDouble("g.scale");
     private final int centerX;
     private final int centerY;
     private final List<Graph> graphList = new ArrayList<>();
@@ -39,6 +40,15 @@ public class DrawingPane extends JPanel {
         centerY = height / 2;
         setBackground(ConfigLoader.getColor("color.dp.background"));
         initGridLines();
+        addMouseWheelListener(e -> {
+            int scrollAmount = e.getWheelRotation();
+            System.out.println(scrollAmount);
+            scale += scrollAmount*scale/20;
+            graphList.forEach(g -> {
+                g.updateScale(scale);
+                updateGraph(g);
+            });
+        });
 
     }
 

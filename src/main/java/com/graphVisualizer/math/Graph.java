@@ -19,13 +19,13 @@ public class Graph {
      *
      * @see ConfigLoader
      */
-    private final double step = ConfigLoader.getDouble("g.step");
+    private double step = ConfigLoader.getDouble("g.step");
 
     /**
      * This variable represents the scaling factor for adjusting the graph's size and spacing.
      * It is initialized with a value retrieved from the application configuration using the key "g.scale".
      */
-    private final double scale = ConfigLoader.getDouble("g.scale");
+    private double scale = ConfigLoader.getDouble("g.scale");
     /**
      * The starting point of the graph curve calculation.
      * Initialized from the configuration property "g.begin".
@@ -118,6 +118,16 @@ public class Graph {
         for (double x = begin, i = 0; i < values.length; x += step, i += 1) {
             variables.set("x", x);
             values[(int) i] = evaluator.evaluate(expression, variables);
+        }
+    }
+
+    public void updateScale(double scale) {
+        this.scale = scale;
+
+        try{
+            setValuesFromExpression(expression);
+        }catch (NullPointerException | IllegalArgumentException ignored) {
+
         }
     }
 
