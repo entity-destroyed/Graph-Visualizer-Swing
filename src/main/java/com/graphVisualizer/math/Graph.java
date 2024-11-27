@@ -30,13 +30,13 @@ public class Graph {
      * The starting point of the graph curve calculation.
      * Initialized from the configuration property "g.begin".
      */
-    private final int begin = ConfigLoader.getInt("g.begin");
+    private int begin = ConfigLoader.getInt("g.begin");
     /**
      * The {@code end} variable represents the endpoint value of the graph on the x-axis,
      * loaded from the application configuration.
      * This value determines the upper limit of the x-axis range for the {@code Graph}.
      */
-    private final int end = ConfigLoader.getInt("g.end");
+    private int end = ConfigLoader.getInt("g.end");
     /**
      * Represents an array of pre-calculated values for plotting a graph curve.
      * The size of the array is determined by the range specified by the {@code begin} and {@code end} values,
@@ -121,9 +121,13 @@ public class Graph {
         }
     }
 
-    public void updateScale(double scale) {
+    public void updateScale(double scale, int paneSize) {
         this.scale = scale;
-
+        System.out.println(scale);
+        //calculate range based on scale and bane width
+        end =(int)Math.ceil((double)paneSize/2/scale);
+        begin = end * -1;
+        step = 2/(scale); //calculate step: multiply by two to avoid stacking lines that cause little bumps
         try{
             setValuesFromExpression(expression);
         }catch (NullPointerException | IllegalArgumentException ignored) {

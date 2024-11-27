@@ -42,10 +42,9 @@ public class DrawingPane extends JPanel {
         initGridLines();
         addMouseWheelListener(e -> {
             int scrollAmount = e.getWheelRotation();
-            System.out.println(scrollAmount);
             scale += scrollAmount*scale/20;
             graphList.forEach(g -> {
-                g.updateScale(scale);
+                g.updateScale(scale,width);
                 updateGraph(g);
             });
         });
