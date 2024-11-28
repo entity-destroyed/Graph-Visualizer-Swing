@@ -77,7 +77,7 @@ public class Graph {
      * a line segment with default coordinates (0.0, 0.0, 0.0, 0.0).
      */
     public Graph() {
-        values = new double[(int) Math.ceil((end - begin) / step)];
+        values = new double[(int) Math.ceil((end - begin+2) / step)];
         lines = new Line2D[values.length - 1];
         for (int i = 0; i < values.length - 1; i++) {
             lines[i] = new Line2D.Double(0.0, 0.0, 0.0, 0.0);
@@ -121,12 +121,11 @@ public class Graph {
         }
     }
 
-    public void updateScale(double scale, int paneSize) {
+    public void updateScaleAndRange(double scale, int centerX, int paneSize){
         this.scale = scale;
-        System.out.println(scale);
-        //calculate range based on scale and bane width
-        end =(int)Math.ceil((double)paneSize/2/scale);
-        begin = end * -1;
+        //calculate range based on scale and center
+        begin = (int) Math.floor((centerX)/-scale);
+        end = (int) Math.ceil(begin + paneSize/scale);
         step = 2/(scale); //calculate step: multiply by two to avoid stacking lines that cause little bumps
         try{
             setValuesFromExpression(expression);

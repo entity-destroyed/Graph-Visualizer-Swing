@@ -5,6 +5,10 @@ import com.graphVisualizer.utils.ConfigLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,8 +27,8 @@ public class DrawingPane extends JPanel {
     private final int width = ConfigLoader.getInt("dim.dp.width");
     private final int height = ConfigLoader.getInt("dim.dp.height");
     private double scale = ConfigLoader.getDouble("g.scale");
-    private final int centerX;
-    private final int centerY;
+    private int centerX;
+    private int centerY;
     private final List<Graph> graphList = new ArrayList<>();
     private final List<Line2D> gridLines = new ArrayList<>();
 
@@ -44,10 +48,39 @@ public class DrawingPane extends JPanel {
             int scrollAmount = e.getWheelRotation();
             scale += scrollAmount*scale/20;
             graphList.forEach(g -> {
-                g.updateScale(scale,width);
+                g.updateScaleAndRange(scale,centerX,width);
                 updateGraph(g);
             });
         });
+
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            private int startX;
+            private int startY;
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                startX = e.getX();
+                startY = e.getY();
+                System.out.println("press: " + startX + " " + startY);
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                centerX += e.getX() - startX;
+                centerY += e.getY() - startY;
+                startX = e.getX();
+                startY = e.getY();
+                graphList.forEach(g -> {
+                    g.updateScaleAndRange(scale, centerX,width);
+                    g.calculateGraphCurve(centerX, centerY);
+                    updateGraph(g);
+                    updateGridLines();
+                });
+            }
+        };
+
+        addMouseListener(mouseAdapter);
+        addMouseMotionListener(mouseAdapter);
 
     }
 
@@ -59,6 +92,11 @@ public class DrawingPane extends JPanel {
         gridLines.add(new Line2D.Double(centerX, 0, centerX, height));
         // Add center horizontal line
         gridLines.add(new Line2D.Double(0, centerY, width, centerY));
+    }
+
+    private void updateGridLines(){
+        gridLines.set(0, new Line2D.Double(centerX, 0, centerX, height));
+        gridLines.set(1, new Line2D.Double(0, centerY, width, centerY));
     }
 
     /**
