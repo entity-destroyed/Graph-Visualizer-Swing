@@ -32,7 +32,7 @@ mathematical expressions, and the application will render the corresponding grap
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/entity_destroyed/graph-visualizer-swing.git
+    git clone https://github.com/entity-destroyed/Graph-Visualizer-Swing.git
     cd graph-visualizer-swing
     ```
 
