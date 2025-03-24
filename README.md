@@ -45,7 +45,7 @@ mathematical expressions, and the application will render the corresponding grap
 3. **Run the application:**
 
     ```bash
-    java -jar target/Graph_Visualizer_Swing-1.0-SNAPSHOT-shaded.jar
+    java -jar target/Graph_Visualizer_Swing-1.0-SNAPSHOT.jar
     ```
 
 ## Usage
